@@ -14,7 +14,12 @@
     | 분류 | 이름 |
     |---|---|
     | 서버 | AWS |
+    | WAS | Tomcat |
     | DB | MariaDB |
     | 언어 | Java 11 |
     | 백엔드 프레임워크 | Spring Boot 2.4.4 |
+    | 권한관리 | Spring Security 5.4.5 |
+    | 템플릿엔진 | Thymeleaf 3.0.12 |
+    | SQL Mapper | Querydsl 4.4.0 |
+    | 빌드 관리 도구 | Gradle |
     

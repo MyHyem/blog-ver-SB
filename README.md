@@ -23,3 +23,5 @@
     | SQL Mapper | Querydsl 4.4.0 |
     | 빌드 관리 도구 | Gradle |
     | 편의성 라이브러리 | Lombok, p6spy, lucy-xss-servlet, gson |
+    
+    + AWS

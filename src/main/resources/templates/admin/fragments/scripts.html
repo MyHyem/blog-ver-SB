@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:fragment="scripts">
+    <script src="/assets/admin/js/core/jquery.min.js"></script>
+    <script src="/assets/admin/js/core/popper.min.js"></script>
+    <script src="/assets/admin/js/core/bootstrap.min.js"></script>
+    <script src="/assets/admin/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!-- Chart JS -->
+    <script src="/assets/admin/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+    <script src="/assets/admin/js/plugins/bootstrap-notify.js"></script>
+
+    <script>
+        function createAlert(target, className, message) {
+            var alertHtml = "";
+
+            alertHtml += "<div class='"+className+"'>";
+            alertHtml += "    <button type='button' aria-hidden='true' class='close' data-dismiss='alert' aria-label='Close'>";
+            alertHtml += "        <i class='nc-icon nc-simple-remove'></i>";
+            alertHtml += "    </button>";
+            alertHtml += "    <span>"+message+"</span>";
+            alertHtml += "</div>";
+
+            $(target).html(alertHtml);
+        }
+    </script>
+</th:block>

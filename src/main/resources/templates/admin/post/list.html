@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="admin/layouts/layout-ver-post">
+
+<th:block layout:fragment="contents">
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">포스트 리스트</h4>
+                    </div>
+                    <div class="card-header col-md-12 text-right position-absolute">
+                        <button type="button" class="btn btn-primary btn-round"
+                                onclick="location.href='/admin/post'">등록</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class="text-primary col-md-12">
+                                <th class="col-md-8">제목</th>
+                                <th class="col-md-1 text-center">작성자</th>
+                                <th class="col-md-2 text-center">작성일</th>
+                                <th class="col-md-1 text-center">조회수</th>
+                                </thead>
+                                <tbody>
+                                <tr th:if="${list.isEmpty()}">
+                                    <td colspan="5" style="text-align: center">포스팅 기록이 없습니다.</td>
+                                </tr>
+                                <th:block th:unless="${list.isEmpty()}" >
+                                    <tr th:each="post: ${list}">
+                                        <td><a th:text="${post.title}" th:href="@{/admin/post/{id} (id=${post.id})}"></a></td>
+                                        <td class=" text-center" th:text="${post.author}"></td>
+                                        <td class=" text-center" th:text="${#temporals.format(post.createdDate,'yyyy-MM-dd HH:mm:ss')}"></td>
+                                        <td class=" text-center" th:text="${post.viewCount}"></td>
+                                    </tr>
+                                </th:block>
+                                </tbody>
+                            </table>
+                            <div class="pagination-container" th:if="${pagination.totalPage ne 0}">
+                                <div class="pagination p1" style="display: block;">
+                                    <a th:style="${pagination.first eq true} ? 'display: none;'" th:href="${pagination.first eq true} ? '#' : @{/admin/posts(page=${pagination.previousPage} - 1)}">&lt;</a>
+                                    <th:block th:each="page: ${#numbers.sequence(pagination.startPage, pagination.endPage)}">
+                                        <a th:classappend="${page == pagination.currentPage + 1} ? 'is-active'" th:text="${page}" th:href="@{/admin/posts(page=${page}-1)}"></a>
+                                    </th:block>
+                                    <a th:style="${pagination.last eq true} ? 'display: none;'" th:href="${pagination.last} ? '#' : @{/admin/posts(page=${pagination.nextPage} - 1)}">></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>

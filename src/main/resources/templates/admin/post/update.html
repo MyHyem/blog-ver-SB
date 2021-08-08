@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout"
+      layout:decorator="admin/layouts/layout-ver-post">
+
+<th:block layout:fragment="contents">
+    <style>
+        .ck .ck-editor {
+            width: 100%;
+        }
+        .ck-editor__editable {
+            min-height: 400px;
+        }
+    </style>
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+    <script src="/assets/admin/js/UploadAdapter.js"></script>
+    <div class="content">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="card card-user">
+                    <div class="card-header">
+                        <h5 class="card-title">포스트 수정</h5>
+                    </div>
+                    <div class="card-body">
+                        <form th:action="@{/admin/post/{id} (id=${post.id})}" th:object="${post}" id="postForm">
+                            <input type="hidden" id="attachmentsSrcs" name="attachmentsSrcs" value="">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label th:for="title">제목</label>
+                                        <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력해주세요.">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label th:for="contents">내용</label>
+                                        <textarea th:field="*{contents}" class="form-control"></textarea>
+                                        <script src="/assets/admin/js/ckeditor-ver-5.js"></script>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="update ml-auto mr-auto">
+                                    <button type="button" class="btn btn-primary btn-round" th:onclick="'validationForm()'">Modify</button>
+                                    <button type="button" class="btn btn-danger btn-round" th:onclick="'deletePost()'">Delete</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function validationForm() {
+            var src = "";
+            var url = $("#postForm").attr("action");
+
+            $("#postForm img").each(function (index, item) {
+                 src += ($(item).attr("src") + ",");
+            });
+            $("#attachmentsSrcs").val(src.substring(0, src.length-1));
+
+            $.ajax({
+                type: "put",
+                url: url,
+                data: $("#postForm").serialize(),
+                success: function (data) {
+                    alert("수정 되었습니다.");
+                    location.href = data;
+                }
+            });
+        }
+
+        function deletePost() {
+            if (confirm("해당 포스트를 삭제 하시겠습니까?")) {
+                var url = $("#postForm").attr("action");
+
+                $.ajax({
+                    type: "delete",
+                    url: url,
+                    data: $("#postForm").serialize(),
+                    success: function (data) {
+                        alert((data == "success") ? "삭제 되었습니다." : "삭제에 실패하였습니다.");
+                        location.href = "/admin/posts";
+                    }
+                });
+            }
+        }
+    </script>
+</th:block>

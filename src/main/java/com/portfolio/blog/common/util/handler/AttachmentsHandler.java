@@ -89,7 +89,7 @@ public class AttachmentsHandler {
 
     // 실제 사용중인 디렉토리에서 파일 단건 삭제
     public void deleteRealFileSingle(String fileName) throws Exception {
-        File file = new File(upLoadPath + "\\" + fileName);
+        File file = new File(upLoadPath + "/" + fileName);
 
         if (file.exists()) {
             if (file.delete()) {
@@ -104,8 +104,8 @@ public class AttachmentsHandler {
     public void copyFile(List<String> fileNames) throws Exception {
         if (fileNames.size() > 0) {
             for (String fileName : fileNames) {
-                File oldFile = new File(uploadBufferPath + "\\" + fileName);
-                File newFile = new File(upLoadPath + "\\" + fileName);
+                File oldFile = new File(uploadBufferPath + "/" + fileName);
+                File newFile = new File(upLoadPath + "/" + fileName);
 
                 Files.copy(oldFile.toPath(), newFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
             }

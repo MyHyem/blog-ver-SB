@@ -58,7 +58,7 @@ public class AttachmentsHandler {
             else
                 throw new IllegalArgumentException("지원하지 않는 확장자");
 
-            // 파일 저장
+            // 파일 저장 경로변경
             String newFileName = String.valueOf(System.currentTimeMillis()) + originExtension;
             File file = new File(uploadBufferPath + "/" + newFileName);
             multipartFile.transferTo(file);

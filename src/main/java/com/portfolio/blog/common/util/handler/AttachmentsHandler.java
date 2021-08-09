@@ -60,7 +60,7 @@ public class AttachmentsHandler {
 
             // 파일 저장
             String newFileName = String.valueOf(System.currentTimeMillis()) + originExtension;
-            File file = new File(uploadBufferPath + "\\" + newFileName);
+            File file = new File(uploadBufferPath + "/" + newFileName);
             multipartFile.transferTo(file);
 
             // 파일 권한 설정

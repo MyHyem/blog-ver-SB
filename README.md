@@ -9,9 +9,9 @@
   
   ------------
   
-  + 포트폴리오 페이지 Url : ec2-13-124-84-115.ap-northeast-2.compute.amazonaws.com:8080
+  + 포트폴리오 페이지 Url : http://ec2-13-124-84-115.ap-northeast-2.compute.amazonaws.com:8080/
   
-  + 관리자 페이지 접근가능 Url : ec2-13-124-84-115.ap-northeast-2.compute.amazonaws.comL8080/admin
+  + 관리자 페이지 접근가능 Url : http://ec2-13-124-84-115.ap-northeast-2.compute.amazonaws.com:8080/admin
   
   + 관리자 페이지 열람가능 계정정보 : admin / 1234 (열람만 가능합니다. 나머지기능은 @PreAuthorize로 제한되어 있습니다)
   

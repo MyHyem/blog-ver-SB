@@ -70,5 +70,5 @@
       
 ### 패치노트<br>
 
-    + 2021-08-18 : 커스텀 에러페이지 적용 및 AccessDeniedHandler 수정
+    2021-08-18 : 커스텀 에러페이지 적용 및 AccessDeniedHandler 수정
 <
